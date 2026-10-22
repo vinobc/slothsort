@@ -32,7 +32,7 @@ Before: ten PDFs with names like `713158_1_En_6_Chapter_Author.pdf` and `UTIITSL
 
 After one command:
 
-SCREENSHOT_SORTED
+![The Sorted folder after one run: circulars, papers, personal, and undo.log](https://dev-to-uploads.s3.us-east-2.amazonaws.com/uploads/articles/ibvsiwtosukqvhg8wwpd.png)
 
 Ten for ten on category, on real files, on a laptop, with no internet connection required.
 
