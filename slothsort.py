@@ -127,6 +127,8 @@ def classify(text: str, filename: str) -> dict:
         }
         break
 
+    if text.startswith("[unreadable PDF") or not text:      # nothing to read: keep the old name
+        verdict["title"] = Path(filename).stem
     if verdict["category"] == "misc":                       # safety net
         fallback = keyword_category(filename, verdict["title"])
         if fallback:
@@ -139,11 +141,13 @@ def classify(text: str, filename: str) -> dict:
 
 # --------------------------------------------------------------------------- filing
 
-def safe_filename(title: str) -> str:
-    """Turn a model title into something every OS accepts."""
-    cleaned = re.sub(r"[^\w\s\-&().,]", "", title).strip()
+def safe_filename(title: str, limit: int = 60) -> str:
+    """Turn a model title into something every OS accepts, cut on a word boundary."""
+    cleaned = re.sub(r"[^\w\s\-&().,]", "", title).replace("_", " ").strip()
     cleaned = re.sub(r"\s+", " ", cleaned)
-    return cleaned[:60] or "untitled"
+    if len(cleaned) > limit:
+        cleaned = cleaned[:limit].rsplit(" ", 1)[0].rstrip(" -,(&")
+    return cleaned or "untitled"
 
 
 def plan_destination(folder: Path, pdf: Path, verdict: dict) -> Path:
