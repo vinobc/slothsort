@@ -122,7 +122,7 @@ def classify(text: str, filename: str) -> dict:
         cat = str(data.get("category", "misc")).strip().lower()
         verdict = {
             "category": cat if cat in CATEGORIES else "misc",
-            "title": str(data.get("title", "untitled")).strip()[:60] or "untitled",
+            "title": str(data.get("title", "untitled")).strip()[:120] or "untitled",
             "year": str(data.get("year", "unknown")).strip(),
         }
         break
