@@ -12,7 +12,7 @@ Institutional documents — exam papers, student lists, internal circulars — s
 
 ```bash
 # 1. Install Ollama (https://ollama.com) and pull a Gemma model
-ollama pull gemma3:4b
+ollama pull gemma3:1b
 
 # 2. Install Python deps
 pip install -r requirements.txt
